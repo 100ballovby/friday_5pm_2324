@@ -21,6 +21,7 @@ class Laptop:
             s_n += random.choice(l)  # серийник собирается случайно из списка символов
         self._serial_number = s_n
 
+    ### Добавим приватный метод для обнуления количества зарядок батареи и сервисный (защищенный) метод замены батареи
     def __reduce_battery_cycles(self):  # private метод
         self.__battery_cycles = 0  # обнуляет приватный параметр
 
@@ -36,3 +37,13 @@ l1._set_serial_number()
 print(l1._serial_number)
 l1._serial_number = 'привет'  # защищенным параметрам значение можно в том числе заменить вручную
 print(l1._serial_number)
+
+for i in range(1000):
+    l1.charge()
+
+# print(l1.__battery_cycles)  <- если обращаться так, то он будет кидаться ошибками
+print(f'Charging cycles: {l1._Laptop__battery_cycles} before crack')
+# l1._Laptop__reduce_battery_cycles()
+l1._Laptop__battery_cycles = 0
+print(f'Charging cycles after: {l1._Laptop__battery_cycles}')
+
